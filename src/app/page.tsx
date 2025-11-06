@@ -1,7 +1,12 @@
 "use client";
-import "./globals.css"
+import "./globals.css";
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import {
   FiMail,
   FiPhone,
@@ -32,19 +37,19 @@ import {
 const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  exit: { opacity: 0 }
+  exit: { opacity: 0 },
 };
 
 const slideUp = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -30 }
+  exit: { opacity: 0, y: -30 },
 };
 
 const scale = {
   initial: { opacity: 0, scale: 0.8 },
   animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.8 }
+  exit: { opacity: 0, scale: 0.8 },
 };
 
 export default function Home() {
@@ -151,9 +156,18 @@ export default function Home() {
       skills: [
         { name: "HTML", icon: <SiHtml5 className="text-orange-500" /> },
         { name: "CSS", icon: <SiCss3 className="text-blue-500" /> },
-        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
-        { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" /> },
-        { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
+        {
+          name: "Tailwind CSS",
+          icon: <SiTailwindcss className="text-cyan-500" />,
+        },
+        {
+          name: "JavaScript",
+          icon: <SiJavascript className="text-yellow-500" />,
+        },
+        {
+          name: "TypeScript",
+          icon: <SiTypescript className="text-blue-600" />,
+        },
         { name: "React.js", icon: <SiReact className="text-blue-400" /> },
         { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
         { name: "Material UI", icon: <SiMui className="text-blue-400" /> },
@@ -204,7 +218,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
-      <motion.header 
+      <motion.header
         className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200"
         style={{ background: headerBackground }}
         initial={{ y: -100 }}
@@ -212,7 +226,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <motion.div 
+          <motion.div
             className="text-xl font-bold text-gray-800"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -222,7 +236,14 @@ export default function Home() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-2">
-            {["Home", "Experience", "Projects", "Education", "Skills", "Contact"].map((item) => (
+            {[
+              "Home",
+              "Experience",
+              "Projects",
+              "Education",
+              "Skills",
+              "Contact",
+            ].map((item) => (
               <motion.button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -249,7 +270,7 @@ export default function Home() {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               className="md:hidden bg-white border-t border-gray-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -257,7 +278,14 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
-                {["Home", "Experience", "Projects", "Education", "Skills", "Contact"].map((item, index) => (
+                {[
+                  "Home",
+                  "Experience",
+                  "Projects",
+                  "Education",
+                  "Skills",
+                  "Contact",
+                ].map((item, index) => (
                   <motion.button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
@@ -276,21 +304,24 @@ export default function Home() {
       </motion.header>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 bg-gradient-to-br from-white to-gray-100">
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 bg-gradient-to-br from-white to-gray-100"
+      >
         <div className="container mx-auto text-center max-w-4xl">
-          <motion.div 
+          <motion.div
             className="mb-8"
             initial="initial"
             animate="animate"
             variants={fadeIn}
           >
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4"
               variants={slideUp}
             >
               Tufail Abbas
             </motion.h1>
-            <motion.h2 
+            <motion.h2
               className="text-xl md:text-2xl text-primary font-semibold mb-8"
               variants={slideUp}
               transition={{ delay: 0.1 }}
@@ -299,7 +330,7 @@ export default function Home() {
             </motion.h2>
           </motion.div>
 
-          <motion.p 
+          <motion.p
             className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 leading-relaxed"
             variants={slideUp}
             transition={{ delay: 0.2 }}
@@ -310,7 +341,7 @@ export default function Home() {
             improving my skills.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
             variants={slideUp}
             transition={{ delay: 0.3 }}
@@ -336,7 +367,7 @@ export default function Home() {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div 
+          <motion.div
             className="mt-12 flex justify-center space-x-4"
             variants={slideUp}
             transition={{ delay: 0.4 }}
@@ -366,7 +397,7 @@ export default function Home() {
       {/* Experience Section */}
       <section id="experience" className="py-20 bg-white px-4">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
             initial="initial"
             whileInView="animate"
@@ -375,7 +406,7 @@ export default function Home() {
           >
             Work Experience
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -423,7 +454,7 @@ export default function Home() {
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-gray-50 px-4">
         <div className="container mx-auto max-w-6xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
             initial="initial"
             whileInView="animate"
@@ -432,7 +463,7 @@ export default function Home() {
           >
             Featured Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -527,7 +558,7 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             initial="initial"
             whileInView="animate"
@@ -551,7 +582,7 @@ export default function Home() {
       {/* Education Section */}
       <section id="education" className="py-20 bg-white px-4">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
             initial="initial"
             whileInView="animate"
@@ -560,7 +591,7 @@ export default function Home() {
           >
             Education
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -606,7 +637,7 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-gray-50 px-4">
         <div className="container mx-auto max-w-6xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
             initial="initial"
             whileInView="animate"
@@ -615,7 +646,7 @@ export default function Home() {
           >
             Technical Skills
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -666,9 +697,12 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-green-50 to-gray-100 px-4">
+      <section
+        id="contact"
+        className="py-20 bg-gradient-to-br from-green-50 to-gray-100 px-4"
+      >
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
             initial="initial"
             whileInView="animate"
@@ -677,7 +711,7 @@ export default function Home() {
           >
             Get In Touch
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -688,7 +722,7 @@ export default function Home() {
             Feel free to reach out for collaborations or just a friendly hello
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="bg-white p-8 rounded-xl shadow-md"
             initial="initial"
             whileInView="animate"
@@ -703,8 +737,8 @@ export default function Home() {
                 </h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <motion.div 
-                      key={index} 
+                    <motion.div
+                      key={index}
                       className="flex items-start gap-4"
                       initial="initial"
                       whileInView="animate"
@@ -777,7 +811,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <motion.footer 
+      <motion.footer
         className="py-12 bg-gray-800 text-white"
         initial="initial"
         whileInView="animate"
