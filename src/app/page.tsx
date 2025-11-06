@@ -17,7 +17,6 @@ import {
   FiGithub,
   FiLinkedin,
   FiExternalLink,
-  FiGlobe,
 } from "react-icons/fi";
 import {
   SiHtml5,
