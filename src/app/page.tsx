@@ -1,7 +1,6 @@
 "use client";
-import "./globals.css";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import "./globals.css"
+import { useState } from "react";
 import {
   FiMail,
   FiPhone,
@@ -28,30 +27,16 @@ import {
   SiFramer,
 } from "react-icons/si";
 
-// Simple animation variants - minimal to avoid Turbopack issues
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-const slideUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId:string) => {
     const element = document.getElementById(sectionId);
+
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    
     setIsMenuOpen(false);
   };
 
@@ -77,16 +62,20 @@ export default function Home() {
       title: "Fronted Coffee Shop",
       description:
         "A modern and responsive coffee shop website built to showcase premium brews, cozy ambiance, and an easy online ordering experience for coffee lovers.",
-      image: "/images/coffee.png",
+
       link: "https://t-shop-eight.vercel.app/",
-      technologies: ["Reactjs", "Tailwind CSS"],
-      features: ["Coffee Buying", "Responsive Design", "Image Galleries"],
+      technologies: ["Next.js", "Tailwind CSS"],
+      features: [
+        "Coffee Buying",
+        "Responsive Design",
+        "Image Galleries",
+      ],
     },
     {
       title: "Alpine Adventure Guide Pakistan",
       description:
         "A comprehensive tourism website for adventure trekking and tours in Pakistan's northern areas. Built with modern web technologies to showcase breathtaking landscapes and facilitate tour bookings.",
-      image: "/images/alpine.png",
+      image: "/api/placeholder/600/400",
       technologies: ["Next.js", "Tailwind CSS"],
       link: "https://www.adventureguide.com.pk/",
       features: [
@@ -96,15 +85,6 @@ export default function Home() {
         "Payment Integration",
         "Admin Dashboard",
       ],
-    },
-    {
-      title: "Kara-kurum Magic",
-      description:
-        "Karakurum Magic Mountains, your gateway to exploring the breathtaking beauty of Gilgit Baltistan! As we are based amongst the mountains in the extreme north of Pakistan, we personally run each trip to ensure the best and most reasonable prices and excellent service, which is what we are known for.",
-      image: "images/karakurum1.png",
-      technologies: ["Next.js", "Tailwind CSS"],
-      link: "https://www.karakurummagic.com/",
-      features: ["Tour Booking System", "MOUNTAINEERING", "Admin Dashboard"],
     },
   ];
 
@@ -150,7 +130,10 @@ export default function Home() {
         },
         { name: "React.js", icon: <SiReact className="text-blue-400" /> },
         { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
-        { name: "Material UI", icon: <SiMui className="text-blue-400" /> },
+        {
+          name: "Material UI",
+          icon: <SiMui className="text-blue-400" />,
+        },
         { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
       ],
     },
@@ -187,22 +170,12 @@ export default function Home() {
     },
   ];
 
-  if (!isVisible) {
-    return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl text-gray-600">Loading...</div>
-      </main>
-    );
-  }
-
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-xl font-bold text-gray-800 hover:scale-105 transition-transform">
-            Tufail Abbas
-          </div>
+          <div className="text-xl font-bold text-gray-800">Tufail Abbas</div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-2">
@@ -217,9 +190,9 @@ export default function Home() {
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-green-600 px-4 py-2 rounded-md hover:text-primary hover:bg-green-50 transition-all duration-200 font-medium hover:scale-105"
+                className={`text-green-600 px-4 py-2 rounded-md  hover:text-primary hover:bg-green-50 transition-colors font-medium`}
               >
-                {item}
+              {item}
               </button>
             ))}
           </nav>
@@ -227,7 +200,7 @@ export default function Home() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-all"
+            className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100"
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
@@ -235,7 +208,7 @@ export default function Home() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200 animate-slideDown">
+          <div className="md:hidden bg-white border-t border-gray-200">
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
               {[
                 "Home",
@@ -244,12 +217,11 @@ export default function Home() {
                 "Education",
                 "Skills",
                 "Contact",
-              ].map((item, index) => (
+              ].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="px-4 py-3 rounded-md text-gray-600 hover:text-primary hover:bg-green-50 transition-all duration-200 text-left font-medium"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="px-4 py-3 rounded-md text-gray-600 hover:text-primary hover:bg-green-50 transition-colors text-left font-medium"
                 >
                   {item}
                 </button>
@@ -265,125 +237,74 @@ export default function Home() {
         className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 bg-gradient-to-br from-white to-gray-100"
       >
         <div className="container mx-auto text-center max-w-4xl">
-          <motion.div
-            className="mb-8"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4"
-              variants={slideUp}
-              transition={{ duration: 0.8 }}
-            >
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">
               Tufail Abbas
-            </motion.h1>
-            <motion.h2
-              className="text-xl md:text-2xl text-primary font-semibold mb-8"
-              variants={slideUp}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            </h1>
+            <h2 className="text-xl md:text-2xl text-primary font-semibold mb-8">
               MERN Stack Developer
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </div>
 
-          <motion.p
-            className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 leading-relaxed"
-            initial="hidden"
-            animate="visible"
-            variants={slideUp}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-12 leading-relaxed">
             Highly motivated and skilled MERN Stack Developer with expertise in
             Next.js, TypeScript, Tailwind CSS, and modern UI libraries.
             Passionate about building scalable web applications and continuously
             improving my skills.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial="hidden"
-            animate="visible"
-            variants={slideUp}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection("contact")}
-              className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary transition-all duration-200 shadow-md flex items-center justify-center gap-2 hover:scale-105"
+              className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary transition-colors shadow-md flex items-center justify-center gap-2"
             >
               <FiMail size={18} />
               Get in Touch
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="border border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-all duration-200 flex items-center justify-center gap-2 hover:scale-105"
+              className="border border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors flex items-center justify-center gap-2"
             >
               <FiExternalLink size={18} />
               View Projects
             </button>
-          </motion.div>
+          </div>
 
           {/* Social Links */}
-          <motion.div
-            className="mt-12 flex justify-center space-x-4"
-            initial="hidden"
-            animate="visible"
-            variants={slideUp}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
+          <div className="mt-12 flex justify-center space-x-4">
             <a
               target="_blank"
               href="https://github.com/tufail206"
-              className="p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200 text-gray-700 hover:text-primary hover:scale-110"
+              className="p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-primary"
             >
               <FiGithub size={20} />
             </a>
             <a
               target="_blank"
               href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
-              className="p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200 text-blue-600 hover:text-blue-700 hover:scale-110"
+              className="p-3 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-blue-600 hover:text-blue-700"
             >
               <FiLinkedin size={20} />
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="py-20 bg-white px-4">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
             Work Experience
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             My professional journey and contributions to the tech industry
-          </motion.p>
+          </p>
 
           <div className="grid gap-8">
             {experiences.map((exp, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-gradient-to-r from-green-50 to-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-primaryHover hover:-translate-y-1"
-                initial="hidden"
-                whileInView="visible"
-                variants={slideUp}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
+                className="bg-gradient-to-r from-green-50 to-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-primaryHover"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div>
@@ -401,7 +322,7 @@ export default function Home() {
                 <p className="text-gray-700 mt-4 leading-relaxed">
                   {exp.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -410,37 +331,18 @@ export default function Home() {
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-gray-50 px-4">
         <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
             Featured Projects
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             Showcasing my work at Digital Pine
-          </motion.p>
+          </p>
 
           <div className="grid gap-8">
             {projects.map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                initial="hidden"
-                whileInView="visible"
-                variants={slideUp}
-                transition={{ duration: 0.6, delay: index * 0.3 }}
-                viewport={{ once: true }}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <div className="md:flex">
                   <div className="md:flex-shrink-0 md:w-1/2">
@@ -489,7 +391,7 @@ export default function Home() {
                         {project.technologies.map((tech, i) => (
                           <span
                             key={i}
-                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:scale-105 transition-transform"
+                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
                           >
                             {tech}
                           </span>
@@ -501,14 +403,14 @@ export default function Home() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primaryHover transition-all duration-200 hover:scale-105"
+                      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primaryHover transition-colors"
                     >
                       <FiExternalLink size={16} />
                       Visit Website
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -516,7 +418,7 @@ export default function Home() {
             <p className="text-gray-600 mb-4">More projects coming soon...</p>
             <button
               onClick={() => scrollToSection("contact")}
-              className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-all duration-200 hover:scale-105"
+              className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors"
             >
               <FiMail size={16} />
               Request More Examples
@@ -528,37 +430,18 @@ export default function Home() {
       {/* Education Section */}
       <section id="education" className="py-20 bg-white px-4">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
             Education
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             My academic background and qualifications
-          </motion.p>
+          </p>
 
           <div className="grid gap-6">
             {education.map((edu, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-blue-500 hover:translate-x-2"
-                initial="hidden"
-                whileInView="visible"
-                variants={slideUp}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
+                className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border-l-4 border-blue-500"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                   <div className="flex-1">
@@ -574,7 +457,7 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -583,37 +466,18 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-gray-50 px-4">
         <div className="container mx-auto max-w-6xl">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
             Technical Skills
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             Technologies and tools I work with
-          </motion.p>
+          </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {skillCategories.map((category, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                initial="hidden"
-                whileInView="visible"
-                variants={slideUp}
-                transition={{ duration: 0.6, delay: index * 0.3 }}
-                viewport={{ once: true }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-2xl">{category.icon}</span>
@@ -625,7 +489,7 @@ export default function Home() {
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105"
+                      className="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                     >
                       <div className="text-3xl mb-2">{skill.icon}</div>
                       <span className="text-sm font-medium text-gray-700 text-center">
@@ -634,7 +498,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -646,35 +510,14 @@ export default function Home() {
         className="py-20 bg-gradient-to-br from-green-50 to-gray-100 px-4"
       >
         <div className="container mx-auto max-w-4xl">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
             Get In Touch
-          </motion.h2>
-          <motion.p
-            className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             Feel free to reach out for collaborations or just a friendly hello
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideUp}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="bg-white p-8 rounded-xl shadow-md">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-6">
@@ -682,16 +525,8 @@ export default function Home() {
                 </h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-start gap-4"
-                      initial="hidden"
-                      whileInView="visible"
-                      variants={slideUp}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="p-2 bg-green-100 rounded-full text-primary hover:scale-110 transition-transform">
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="p-2 bg-green-100 rounded-full text-primary">
                         {info.icon}
                       </div>
                       <div>
@@ -709,7 +544,7 @@ export default function Home() {
                           <p className="text-gray-600">{info.value}</p>
                         )}
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -723,33 +558,33 @@ export default function Home() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg focus:outline-green-300 transition-all duration-200 focus:scale-105"
+                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg  focus:outline-green-300"
                     />
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg focus:outline-green-300 transition-all duration-200 focus:scale-105"
+                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg  focus:outline-green-300"
                     />
                   </div>
                   <div>
                     <textarea
                       placeholder="Your Message"
                       rows={4}
-                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg focus:outline-green-300 transition-all duration-200 focus:scale-105"
+                      className="w-full px-4 py-3 border outline-none border-gray-300 rounded-lg  focus:outline-green-300"
                     ></textarea>
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary transition-all duration-200 hover:scale-105"
+                    className="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-primary transition-colors"
                   >
                     Send Message
                   </button>
                 </form>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -757,21 +592,15 @@ export default function Home() {
       <footer className="py-12 bg-gray-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center space-x-6 mb-6">
-            <a
-              href="#"
-              className="hover:text-primary transition-colors hover:scale-110"
-            >
+            <a href="#" className="hover:text-primary transition-colors">
               <FiGithub size={24} />
             </a>
-            <a
-              href="#"
-              className="hover:text-primary transition-colors hover:scale-110"
-            >
+            <a href="#" className="hover:text-primary transition-colors">
               <FiLinkedin size={24} />
             </a>
             <a
               href="mailto:tufail206abbas@gmail.com"
-              className="hover:text-primary transition-colors hover:scale-110"
+              className="hover:text-primary transition-colors"
             >
               <FiMail size={24} />
             </a>
